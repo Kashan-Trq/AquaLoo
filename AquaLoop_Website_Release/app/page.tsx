@@ -14,7 +14,7 @@ export default function HomePage() {
         <nav className="site-nav" aria-label="Main navigation">
           <Link className="brand brand-light" href="/" aria-label="AquaLoop home"><span className="brand-mark">↻</span><span>AquaLoop</span></Link>
           <div className="nav-links"><a href="#system">The system</a><a href="#proof">Proof</a><a href="#roadmap">Roadmap</a></div>
-          <a className="nav-download" https://github.com/Kashan-Trq/AquaLoo/releases/download/v1.0.0/app-release.apk download>Download app <span>↗</span></a>
+          <a className="nav-download" href= " https://github.com/Kashan-Trq/AquaLoo/releases/download/v1.0.0/app-release.apk" download>Download app <span>↗</span></a>
         </nav>
 
         <div className="hero-grid page-width">
@@ -23,7 +23,7 @@ export default function HomePage() {
             <h1>Give the water a home already has a second life.</h1>
             <p className="hero-lede">AquaLoop is a low-cost, sensor-controlled greywater system for measured, non-potable reuse — with the hardware, app and evidence trail to move from bench prototype to field pilot.</p>
             <div className="hero-actions">
-              <a className="button button-aqua" href="/downloads/aqualoop-app.apk" download>Download the Android app <span>↓</span></a>
+              <a className="button button-aqua" href="https://github.com/Kashan-Trq/AquaLoo/releases/download/v1.0.0/app-release.apk" download>Download the Android app <span>↓</span></a>
               <a className="button button-outline" href="#system">See how it works <span>→</span></a>
             </div>
             <div className="hero-notes" aria-label="AquaLoop highlights"><span><i /> Working bench prototype</span><span><i /> Local-first control</span><span><i /> Non-potable by design</span></div>
