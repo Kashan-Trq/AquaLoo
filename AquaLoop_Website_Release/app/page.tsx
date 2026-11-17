@@ -14,7 +14,7 @@ export default function HomePage() {
         <nav className="site-nav" aria-label="Main navigation">
           <Link className="brand brand-light" href="/" aria-label="AquaLoop home"><span className="brand-mark">↻</span><span>AquaLoop</span></Link>
           <div className="nav-links"><a href="#system">The system</a><a href="#proof">Proof</a><a href="#roadmap">Roadmap</a></div>
-          <a className="nav-download" href="/downloads/aqualoop-app.apk" download>Download app <span>↗</span></a>
+          <a className="nav-download" href="https://github.com/Kashan-Trq/AquaLoo/releases/download/v1.0.0/app-release.apk" download>Download app <span>↗</span></a>
         </nav>
 
         <div className="hero-grid page-width">
