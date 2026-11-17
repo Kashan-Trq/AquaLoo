@@ -7,7 +7,7 @@ const flow = [
   { number: "04", title: "Reuse", copy: "Route verified non-potable water to appropriate reuse applications.", icon: "↻" },
 ];
 
-const apkUrl = process.env.NEXT_PUBLIC_APK_URL || "/downloads/aqualoop-app.apk";
+const apkUrl = process.env.NEXT_PUBLIC_APK_URL || "https://github.com/Kashan-Trq/AquaLoo/releases/download/v1.0.0/app-release.apk";
 
 export default function HomePage() {
   return (
