@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081d2b" />
+  <meta name="description" content="AquaLoop turns greywater into a measurable, reusable resource for homes, communities, and a more resilient future." />
+  <title>AquaLoop — Make every litre work harder</title>
+  <style>
+    :root {
+      --ink: #092334;
+      --muted: #607683;
+      --paper: #f4f8f6;
+      --white: #ffffff;
+      --line: #d7e5e1;
+      --aqua: #40d8bd;
+      --aqua-dark: #0e6c6a;
+      --blue: #123d59;
+      --navy: #081d2b;
+      --lime: #d9f06f;
+      --shadow: 0 24px 70px rgba(8, 29, 43, .12);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--aqua-dark);
+      font-size: .73rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--aqua); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { letter-spacing: -.055em; line-height: 1.02; }
+    h1 { max-width: 780px; margin-bottom: 25px; font-size: clamp(3.4rem, 8vw, 7.25rem); font-weight: 750; }
+    h2 { margin-bottom: 22px; font-size: clamp(2.45rem, 5vw, 4.9rem); font-weight: 700; }
+    h3 { margin-bottom: 12px; font-size: 1.35rem; }
+    .lede { max-width: 590px; color: #c7d9dd; font-size: clamp(1.05rem, 1.7vw, 1.32rem); line-height: 1.7; }
+    .muted { color: var(--muted); }
+
+    .site-header {
+      position: fixed;
+      z-index: 20;
+      top: 16px;
+      left: 50%;
+      width: min(1180px, calc(100% - 32px));
+      transform: translateX(-50%);
+      padding: 11px 14px 11px 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(8, 29, 43, .86);
+      box-shadow: 0 12px 35px rgba(8,29,43,.14);
+      backdrop-filter: blur(16px);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-weight: 800; letter-spacing: -.02em; }
+    .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 10px; background: var(--aqua); color: var(--navy); }
+    .brand-mark svg { width: 20px; }
+    .nav-links { display: flex; align-items: center; gap: 27px; color: #bbced3; font-size: .88rem; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: #fff; }
+    .nav-cta, .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 47px;
+      padding: 0 19px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--lime);
+      color: var(--navy);
+      font-weight: 800;
+      font-size: .91rem;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .nav-cta:hover, .button-primary:hover, .nav-cta:focus-visible, .button-primary:focus-visible { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(217,240,111,.22); }
+    .menu-toggle { display: none; border: 0; background: transparent; color: #fff; font-size: 1.4rem; }
+
+    .hero { position: relative; overflow: hidden; padding: 190px 0 90px; color: #fff; background: var(--navy); }
+    .hero::before, .hero::after { position: absolute; content: ""; border-radius: 50%; filter: blur(5px); pointer-events: none; }
+    .hero::before { width: 540px; height: 540px; top: -220px; right: -130px; background: radial-gradient(circle, rgba(64,216,189,.32), transparent 64%); }
+    .hero::after { width: 460px; height: 460px; bottom: -260px; left: 21%; background: radial-gradient(circle, rgba(18,61,89,.7), transparent 66%); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; align-items: end; gap: 60px; }
+    .hero-copy .eyebrow { color: var(--aqua); }
+    .hero-copy h1 span { color: var(--aqua); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .button-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 47px; padding: 0 19px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; color: #fff; font-size: .91rem; font-weight: 750; transition: border-color .2s ease, background .2s ease; }
+    .button-ghost:hover, .button-ghost:focus-visible { border-color: var(--aqua); background: rgba(64,216,189,.09); }
+    .hero-note { margin-top: 33px; color: #91abb2; font-size: .81rem; }
+
+    .loop-card { position: relative; min-height: 480px; padding: 25px; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-lg); background: linear-gradient(145deg, rgba(30,82,99,.78), rgba(7,29,43,.7)); }
+    .loop-card::before { position: absolute; inset: 21px; border: 1px solid rgba(64,216,189,.2); border-radius: 24px; content: ""; }
+    .loop-card-label { position: relative; display: flex; justify-content: space-between; color: #9fc2c5; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .loop-card-label span:last-child { color: var(--aqua); }
+    .orbit { position: absolute; top: 85px; right: 16%; left: 16%; aspect-ratio: 1; border: 1px solid rgba(64,216,189,.45); border-radius: 50%; transform: rotate(-14deg); }
+    .orbit::before, .orbit::after { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 0 8px rgba(64,216,189,.1), 0 0 25px rgba(64,216,189,.8); content: ""; }
+    .orbit::before { top: 6%; right: 20%; }
+    .orbit::after { bottom: 18%; left: 10%; background: var(--lime); box-shadow: 0 0 0 8px rgba(217,240,111,.1), 0 0 25px rgba(217,240,111,.8); }
+    .orbital-core { position: absolute; top: 50%; left: 50%; display: grid; width: 164px; height: 164px; place-items: center; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #68ebd1, #157979 50%, #0e425b); transform: translate(-50%, -50%); box-shadow: inset -18px -18px 32px rgba(3,28,43,.3), 0 0 60px rgba(64,216,189,.18); }
+    .orbital-core svg { width: 60px; fill: none; stroke: #d9f06f; stroke-linecap: round; stroke-width: 1.7; }
+    .loop-stat { position: absolute; right: 33px; bottom: 29px; left: 33px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .loop-stat div { padding: 13px 14px; border: 1px solid rgba(255,255,255,.13); border-radius: 14px; background: rgba(0,0,0,.13); }
+    .loop-stat b { display: block; color: #fff; font-size: 1.2rem; letter-spacing: -.03em; }
+    .loop-stat small { color: #9ebbc0; font-size: .66rem; text-transform: uppercase; letter-spacing: .08em; }
+
+    .signal-bar { padding: 20px 0; border-bottom: 1px solid var(--line); background: #e9f2ee; }
+    .signals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .signal { display: flex; align-items: center; gap: 11px; color: var(--blue); font-size: .87rem; font-weight: 700; }
+    .signal i { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--aqua-dark); box-shadow: 0 0 0 5px rgba(14,108,106,.1); }
+
+    section { padding: 125px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 45px; margin-bottom: 55px; }
+    .section-head > div:first-child { flex: 1; }
+    .section-head p { max-width: 395px; margin-bottom: 8px; color: var(--muted); }
+    .mission { background: #fff; }
+    .mission-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 90px; align-items: start; }
+    .mission-copy h2 { max-width: 580px; }
+    .mission-copy h2 em { color: var(--aqua-dark); font-style: normal; }
+    .mission-body { max-width: 590px; color: var(--muted); font-size: 1.08rem; line-height: 1.8; }
+    .impact-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .impact-item { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 25px 0; border-bottom: 1px solid var(--line); }
+    .impact-number { color: var(--aqua-dark); font-size: .8rem; font-weight: 800; letter-spacing: .12em; }
+    .impact-item p { margin-bottom: 0; color: var(--muted); font-size: .94rem; }
+
+    .system { background: #e9f2ee; }
+    .system h2 { max-width: 630px; }
+    .loop-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .step { min-height: 265px; padding: 24px; border: 1px solid #cbded8; border-radius: var(--radius-md); background: rgba(255,255,255,.56); }
+    .step:nth-child(2) { margin-top: 25px; }
+    .step:nth-child(3) { margin-top: 50px; }
+    .step:nth-child(4) { margin-top: 75px; background: var(--navy); color: #fff; }
+    .step-icon { display: grid; width: 44px; height: 44px; margin-bottom: 65px; place-items: center; border-radius: 14px; background: #d6eee6; color: var(--aqua-dark); }
+    .step:nth-child(4) .step-icon { background: #1d5260; color: var(--aqua); }
+    .step-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+    .step p { margin-bottom: 0; color: var(--muted); font-size: .88rem; }
+    .step:nth-child(4) p { color: #a8c1c4; }
+
+    .proof { color: #fff; background: var(--blue); }
+    .proof .eyebrow { color: var(--aqua); }
+    .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .proof h2 { max-width: 550px; }
+    .proof-intro { max-width: 490px; color: #b6cbd0; font-size: 1.05rem; line-height: 1.8; }
+    .proof-card { padding: 34px; border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius-lg); background: rgba(255,255,255,.055); }
+    .proof-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 34px; color: #a9c3c7; font-size: .72rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .status { display: inline-flex; align-items: center; gap: 7px; color: var(--lime); }
+    .status::before { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); content: ""; }
+    .proof-lines { display: grid; gap: 21px; }
+    .proof-line { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; color: #e0edef; font-size: .92rem; }
+    .proof-line span:last-child { color: var(--aqua); font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .bar { height: 6px; margin-top: 9px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.13); }
+    .bar::after { display: block; width: 78%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--aqua), var(--lime)); content: ""; }
+
+    .roadmap { background: #fff; }
+    .roadmap-grid { display: grid; grid-template-columns: 1fr .85fr; gap: 80px; }
+    .timeline { border-top: 1px solid var(--line); }
+    .timeline-row { display: grid; grid-template-columns: 70px 1fr auto; gap: 22px; align-items: start; padding: 25px 0; border-bottom: 1px solid var(--line); }
+    .timeline-number { color: var(--aqua-dark); font-weight: 800; }
+    .timeline-row h3 { margin-bottom: 5px; font-size: 1.15rem; letter-spacing: -.02em; }
+    .timeline-row p { margin-bottom: 0; color: var(--muted); font-size: .91rem; }
+    .timeline-tag { padding: 6px 9px; border-radius: 999px; background: #e9f2ee; color: var(--aqua-dark); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .pilot-card { align-self: end; padding: 32px; border-radius: var(--radius-lg); background: var(--lime); }
+    .pilot-card .eyebrow { color: var(--navy); }
+    .pilot-card h3 { max-width: 310px; margin-top: 27px; font-size: 2rem; }
+    .pilot-card p { color: #405320; font-size: .93rem; }
+    .pilot-card strong { display: block; margin-top: 22px; color: var(--navy); font-size: 2.6rem; letter-spacing: -.06em; }
+    .pilot-card small { color: #405320; font-weight: 700; }
+
+    .download { padding-top: 75px; }
+    .download-panel { display: grid; grid-template-columns: 1fr .8fr; gap: 55px; align-items: center; padding: clamp(35px, 7vw, 80px); border-radius: var(--radius-lg); color: #fff; background: var(--navy); box-shadow: var(--shadow); }
+    .download-panel h2 { max-width: 650px; margin-bottom: 15px; }
+    .download-panel p { max-width: 560px; color: #abc1c7; }
+    .download-action { justify-self: end; width: min(100%, 330px); padding: 25px; border: 1px solid rgba(255,255,255,.16); border-radius: 22px; background: rgba(255,255,255,.06); }
+    .download-action small { display: block; margin-bottom: 15px; color: #a5c2c4; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .download-action .button-primary { width: 100%; }
+    .download-note { margin: 13px 0 0; color: #90abb1; font-size: .76rem; text-align: center; }
+
+    footer { padding: 28px 0 38px; border-top: 1px solid var(--line); background: #fff; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .82rem; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); font-weight: 800; }
+    .footer-mark { display: grid; width: 24px; height: 24px; place-items: center; border-radius: 8px; background: var(--aqua); color: var(--navy); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    :focus-visible { outline: 3px solid var(--aqua); outline-offset: 4px; }
+
+    @media (max-width: 850px) {
+      .shell { width: min(100% - 34px, 620px); }
+      .site-header { top: 10px; }
+      .nav-links { position: absolute; top: 62px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 10px; border: 1px solid rgba(255,255,255,.14); border-radius: 20px; background: rgba(8,29,43,.97); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 13px 14px; }
+      .nav-cta { margin: 4px; }
+      .menu-toggle { display: block; }
+      .hero { padding-top: 145px; }
+      .hero-grid, .mission-grid, .proof-grid, .roadmap-grid, .download-panel { grid-template-columns: 1fr; gap: 45px; }
+      .loop-card { min-height: 410px; }
+      .section-head { display: block; margin-bottom: 38px; }
+      .section-head p { margin-top: 20px; }
+      .loop-steps { grid-template-columns: repeat(2, 1fr); }
+      .step:nth-child(n) { margin-top: 0; }
+      .step:nth-child(2), .step:nth-child(3) { transform: translateY(20px); }
+      .download-action { justify-self: stretch; width: 100%; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: calc(100% - 28px); }
+      h1 { font-size: clamp(3rem, 16vw, 4.7rem); }
+      section { padding: 85px 0; }
+      .hero { padding-bottom: 65px; }
+      .signals { grid-template-columns: 1fr; gap: 13px; }
+      .loop-card { min-height: 355px; padding: 17px; }
+      .loop-card::before { inset: 13px; }
+      .orbit { top: 82px; right: 12%; left: 12%; }
+      .orbital-core { width: 120px; height: 120px; }
+      .loop-stat { right: 21px; bottom: 20px; left: 21px; gap: 5px; }
+      .loop-stat div { padding: 10px 7px; }
+      .loop-stat b { font-size: .93rem; }
+      .loop-stat small { font-size: .55rem; }
+      .mission-grid, .proof-grid, .roadmap-grid { gap: 35px; }
+      .loop-steps { grid-template-columns: 1fr; }
+      .step:nth-child(2), .step:nth-child(3) { transform: none; }
+      .step { min-height: 220px; }
+      .step-icon { margin-bottom: 42px; }
+      .timeline-row { grid-template-columns: 40px 1fr; gap: 11px; }
+      .timeline-tag { grid-column: 2; justify-self: start; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="AquaLoop home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c3.8 4.1 6.2 7.1 6.2 10.5A6.2 6.2 0 1 1 5.8 13.5C5.8 10.1 8.2 7.1 12 3Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.6 14.6c.4 1.6 1.5 2.5 3.4 2.8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/></svg></span>
+        <span>AquaLoop</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">☰</button>
+      <div id="nav-links" class="nav-links">
+        <a href="#mission">Mission</a>
+        <a href="#system">How it works</a>
+        <a href="#proof">Prototype</a>
+        <a class="nav-cta" href="#download">Get the app <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Smart water recovery</span>
+          <h1>Make every litre <span>work harder.</span></h1>
+          <p class="lede">AquaLoop helps homes and communities capture, treat, and understand greywater so clean water can stay where it matters most.</p>
+          <div class="hero-actions">
+            <a class="nav-cta" href="#system">Explore the loop <span aria-hidden="true">↓</span></a>
+            <a class="button-ghost" href="#mission">Why AquaLoop <span aria-hidden="true">→</span></a>
+          </div>
+          <p class="hero-note">A low-cost hardware and software system for measured, non-potable reuse.</p>
+        </div>
+        <div class="loop-card reveal" aria-label="AquaLoop system illustration">
+          <div class="loop-card-label"><span>The AquaLoop system</span><span>01 / 04</span></div>
+          <div class="orbit"><div class="orbital-core"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M11 28c2-7 8-12 16-13 10-1 17 4 22 11"/><path d="m45 21 5 5-7 1"/><path d="M53 36c-2 7-8 12-16 13-10 1-17-4-22-11"/><path d="m19 43-5-5 7-1"/></svg></div></div>
+          <div class="loop-stat"><div><b>1,420 L</b><small>demo recovered</small></div><div><b>76%</b><small>demo quality</small></div><div><b>24/7</b><small>local sensing</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="signal-bar">
+      <div class="shell signals"><div class="signal"><i></i>Working bench prototype</div><div class="signal"><i></i>Local-first control</div><div class="signal"><i></i>Non-potable by design</div></div>
+    </div>
+
+    <section id="mission" class="mission">
+      <div class="shell mission-grid">
+        <div class="mission-copy reveal"><span class="eyebrow">The mission</span><h2>Water stress is a systems problem. We are building a <em>practical loop.</em></h2></div>
+        <div class="reveal"><p class="mission-body">Every day, usable water is sent down the drain while homes, schools, and small communities face rising pressure on supply. AquaLoop makes reuse visible and manageable: a simple recovery system, clear measurements, and a path from prototype to real-world impact.</p><div class="impact-list"><div class="impact-item"><span class="impact-number">01</span><div><h3>Make resilience accessible</h3><p>Design around affordable parts and clear feedback so more people can participate in water stewardship.</p></div></div><div class="impact-item"><span class="impact-number">02</span><div><h3>Turn evidence into action</h3><p>Track what is captured, treated, and reused instead of asking people to trust a black box.</p></div></div><div class="impact-item"><span class="impact-number">03</span><div><h3>Build for positive impact</h3><p>Start with one loop, then share the learning that helps communities make better decisions together.</p></div></div></div></div>
+      </div>
+    </section>
+
+    <section id="system" class="system">
+      <div class="shell">
+        <div class="section-head reveal"><div><span class="eyebrow">The product</span><h2>From greywater to useful water.</h2></div><p>AquaLoop connects physical recovery with a calm, understandable control layer. Four moments. One measurable cycle.</p></div>
+        <div class="loop-steps"><article class="step reveal"><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M12 3c3.4 4 5.5 6.9 5.5 10a5.5 5.5 0 0 1-11 0c0-3.1 2.1-6 5.5-10Z"/><path d="M9.5 14.5c.4 1.3 1.2 2 2.5 2.3"/></svg></div><h3>Collect</h3><p>Capture suitable greywater at the source before it becomes waste.</p></article><article class="step reveal"><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/><path d="M8 4v3M16 12v3M10 17v3"/></svg></div><h3>Filter</h3><p>Move water through a simple treatment path built for non-potable reuse.</p></article><article class="step reveal"><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 15V9M8 18V6M12 14v-4M16 19V5M20 12v-1"/></svg></div><h3>Monitor</h3><p>Use sensors and local control to make system state easy to understand.</p></article><article class="step reveal"><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><h3>Reuse</h3><p>Put recovered water to practical, measured use where potable water is not required.</p></article></div>
+      </div>
+    </section>
+
+    <section id="proof" class="proof">
+      <div class="shell proof-grid"><div class="reveal"><span class="eyebrow">Real hardware · real testing</span><h2>Trust is something you can measure.</h2><p class="proof-intro">AquaLoop is being developed as a working sensing, switching, filtration, and control stack. The next step is field evidence: more homes, more conditions, and transparent learning.</p></div><div class="proof-card reveal"><div class="proof-card-top"><span>Prototype readiness</span><span class="status">Active build</span></div><div class="proof-lines"><div class="proof-line"><div><span>Hardware assembly</span><div class="bar"></div></div><span>Built</span></div><div class="proof-line"><div><span>Bench validation</span><div class="bar"></div></div><span>Tested</span></div><div class="proof-line"><div><span>Community pilot</span><div class="bar" style="--w:25%"></div></div><span>Next</span></div></div></div></div>
+    </section>
+
+    <section class="roadmap">
+      <div class="shell roadmap-grid"><div class="reveal"><span class="eyebrow">The next proof point</span><h2>Turn a working prototype into field evidence.</h2><div class="timeline"><div class="timeline-row"><span class="timeline-number">01</span><div><h3>Build + assemble</h3><p>Harden the sensing and filtration stack for repeatable installation.</p></div><span class="timeline-tag">Now</span></div><div class="timeline-row"><span class="timeline-number">02</span><div><h3>Deploy + measure</h3><p>Run a focused pilot and learn how the loop behaves in daily life.</p></div><span class="timeline-tag">Next</span></div><div class="timeline-row"><span class="timeline-number">03</span><div><h3>Publish + partner</h3><p>Share the evidence with schools, communities, and implementation partners.</p></div><span class="timeline-tag">Ahead</span></div></div></div><aside class="pilot-card reveal"><span class="eyebrow">Pilot target</span><h3>Start small. Prove what matters.</h3><p>A focused 25-home pilot can turn a promising system into practical, shareable evidence.</p><strong>$3,500</strong><small>target support · six months</small></aside></div>
+    </section>
+
+    <section id="download" class="download">
+      <div class="shell"><div class="download-panel reveal"><div><span class="eyebrow">One clear next step</span><h2>See the loop from the inside.</h2><p>Use the Android MVP to explore the system view, follow recovery activity, and understand what AquaLoop is learning as it moves toward a field pilot.</p></div><div class="download-action"><small>Android MVP · v1.0.0</small><a class="button-primary" href="https://github.com/Kashan-Trq/AquaLoo/releases/download/v1.0.0/app-release.apk">Download the app <span aria-hidden="true">↓</span></a><p class="download-note">For Android devices</p></div></div></div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-inner"><a class="footer-brand" href="#top"><span class="footer-mark">⌁</span>AquaLoop</a><span>Smart greywater recovery · Prototype + software MVP</span><a href="#top">Back to top ↑</a></div></footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const links = document.querySelector('#nav-links');
+    menuButton.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    links.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      links.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open menu');
+    }));
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
